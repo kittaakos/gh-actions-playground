@@ -20,12 +20,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - run: mkdir -p path/to/artifact
+      - run: echo hello1 > path/to/artifact/world1.txt
+      - run: echo hello2 > path/to/artifact/world2.txt
 
-      - name: Install Node.js 10.x
-        uses: actions/setup-node@v1
+      - uses: kittaakos/upload-artifact-as-is@v2
         with:
-          node-version: '10.x'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: yarn
+          path: path/to/artifact/
